@@ -6,7 +6,6 @@ var receivedQnt = 0;
 $.ajax({
     url: "https://swapi.co/api/people/"
 }).done(function(data) {
-    console.log( "https://swapi.co/api/people/", data);
     totalQnt = data.count;
     getHeroes(data.count);
 }).fail(function( jqXHR, textStatus ) {
@@ -20,11 +19,9 @@ function getHeroes(count) {
 }
 
 function getHero(i) {
-    console.log("send request https://swapi.co/api/people/" + i);
     $.ajax({
         url: "https://swapi.co/api/people/" + i
     }).done(function(data) {
-        console.log("https://swapi.co/api/people/" + i, data);
         heroes.push(_.extend({id: i}, data));
         if (++receivedQnt === totalQnt) {
             displayHeroes(heroes);
